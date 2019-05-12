@@ -1,5 +1,5 @@
 #include "rdm.h"
-// modif test
+
 const int valMax = 4;
 
 void NombrePoints(int nombre_point){
