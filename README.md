@@ -1,4 +1,4 @@
-# Projet-Algo-Creuzet-Dupuy
+# Projet-RDM-Creuzet-Dupuy
 Projet Calcul torseurs et composantes en RDM
 
 
