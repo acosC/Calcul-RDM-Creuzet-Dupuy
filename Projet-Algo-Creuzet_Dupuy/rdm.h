@@ -14,9 +14,13 @@ typedef struct{
     double c[3];
     char nom[1];
     liaison l;
-    int inconnu_f;
-    int inconnu_m;
 }torseur;
+
+typedef struct{
+    double m[3];
+    double f[3];
+    double c[3];
+}torseur_cohesion;
 
 void NombrePoints(int nombre_point);
 void Initialisation(int i,torseur* t);
@@ -42,6 +46,7 @@ void AfficherMoments(torseur* t, int i);
 void AfficherlesTorseurs(torseur *t, int i);
 
 //Graphique
-void affichercourbe(torseur *t);
+torseur_cohesion* Initialisation_cohesion(torseur_cohesion tc);
+void Affichercourbe(torseur *t, int* ptr_longueur);
 
 #endif // RDM_H_INCLUDED
