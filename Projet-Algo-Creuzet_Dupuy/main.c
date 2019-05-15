@@ -3,6 +3,16 @@
 #include <assert.h>
 #include "rdm.h"
 
+
+/*
+Interface utilisateur-->Questions à choix multiple
+
+Constitution des éléments nécessaires à la résolution du problème.
+Renvoi aux fonctions de "créationtorseur.c"
+
+Menu de résolution, affichage des données calculées.
+*/
+
 int main()
 {
     int nb_point, i, var = -1, a = 0, origine = -1;
