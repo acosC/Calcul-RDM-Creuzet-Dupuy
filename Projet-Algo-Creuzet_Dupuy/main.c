@@ -5,11 +5,13 @@
 
 int main()
 {
-    int nb_point, i, var = -1, a = 0, origine = -1;
-
+    int nb_point, i, var = -1, a = 0, origine = -1, longueur = -1;
     int ChoixUtilisateur = 0;
 
+    int* ptr_longueur = NULL;
+    torseur_cohesion toco;
 
+    torseur_cohesion *tc = Initialisation_cohesion(toco);
 
     printf("Bonjour, nous allons vous aider dans la resolution de votre probleme de RDM.\n");
     printf("Quelques questions pour comprendre l'exercice : \n");
@@ -30,6 +32,18 @@ int main()
         scanf("%i",&var);
     }
 
+    printf("Quelle est la longueur de la poutre étudiée ? ");
+    scanf("%i", &longueur);
+
+    while (longueur < 0){
+        printf("Une longueur doit être positive ");
+        scanf("%i",&longueur);
+    }
+
+    ptr_longueur = &longueur;
+
+    Affichercourbe(t, ptr_longueur);
+
     for (i = 0 ; i < nb_point ; i++){
         printf("On va remplir les information du torseur %i\n",i+1);
         origine = EntrerTorseurInit(i, t, var, origine);
@@ -47,31 +61,38 @@ int main()
 
     do {
         switch(ChoixUtilisateur){
+
         case 1 :
             printf("Voici vos resultantes\n");
 	    if (nb_point == 2)
 		ResolForce2Torseurs(t);
 	    else
             	ResolForce3Torseurs(t);
+              AfficherlesTorseurs(t,0);
             break;
+
         case 2 :
             printf("Voici vos moments\n");
 	          babar(t, origine);
             break;
+
         case 3 :
             printf("Voici vos torseurs\n");
-            AfficherlesTorseurs(t, 0);
-            AfficherlesTorseurs(t, 1);
-            if (nb_point==3)
-              AfficherlesTorseurs(t, 2);
+            AfficherlesTorseurs(t,0);
+            AfficherlesTorseurs(t,1);
+            if (nb_point == 3)
+              AfficherlesTorseurs(t,2);
             break;
+
         case 4 :
             printf("Voici vos torseurs de cohesion\n");
             break;
+
         case 5 :
             printf("Voici vos diagrammes\n");
-            affichercourbe(t);
+            Affichercourbe(t, ptr_longueur);
             break;
+
         case 6 :
             assert (a == 0);
         default :
