@@ -8,7 +8,7 @@ Détail de la collecte des données :
 -Localisation de ces derniers
 -Mise en évidence des paramètres inconnus
 
--Banque de données des types de liaisons et leurs torseurs associéscanf
+-Banque de données des types de liaisons et leurs torseurs associés
 */
 
 
