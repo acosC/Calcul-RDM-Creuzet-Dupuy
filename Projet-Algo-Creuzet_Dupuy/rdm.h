@@ -5,6 +5,19 @@
 #include <stdlib.h>
 #include<math.h>
 
+/*
+Création des structures du programme :
+
+Nous avons fait le choix de mettre nos torseurs sous forme de tableau.
+
+--> 3 paramètres principaux
+
+-FORCES (f)
+-Moment (m)
+-Localisation (coordonnées : c)
+
+*/
+
 typedef enum {ENCASTREMENT = 0, GLISSIERE, PIVOT, PIVOT_GLISSANT, ROTULE,
 LINEAIRE_RECT, LINEAIRE_ANNULAIRE, PONCTUELLE}liaison;
 
@@ -13,15 +26,19 @@ typedef struct{
     double f[3];
     double c[3];
     char nom[1];
-    liaison l;
+    liaison l;   
     int inconnu;
-}torseur;
+    }torseur;
 
 typedef struct{
     double m[3];
     double f[3];
     double c[3];
 }torseur_cohesion;
+
+/*
+Création des prototypes des fonctions du programme :
+*/
 
 void NombrePoints(int nombre_point);
 void Initialisation(int i,torseur* t);

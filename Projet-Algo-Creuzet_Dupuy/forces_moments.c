@@ -1,15 +1,6 @@
 #include "rdm.h"
+#include "gnuplot_i.h"
 
-void AfficherForces(torseur* t, int i){
-    int j;
-    printf("\n\n---- Calcul des forces ----\n\n");
-    printf("NOM : %s\n",t[i].nom);
-    printf("FORCES : ");
-    for (j = 0 ; j < 3 ; j++){
-        printf("%f ",t[i].f[j]);
-    }
-    printf("\n");
-}
 
 void ResolForce2Torseurs(torseur *t){ //Cas simple
 
@@ -57,7 +48,7 @@ void ResolForce3Torseurs(torseur *t){ //Cas " tors 1 inc
 }
 
 
-void AfficherMoments(torseur* t, int i){
+void AfficherMoments(torseur* t, int i, int nb_point){
     int j;
     printf("\n\n---- Calcul des Moments en 0 ----\n\n");
     printf("NOM : %s\n",t[i].nom);
@@ -68,7 +59,7 @@ void AfficherMoments(torseur* t, int i){
     printf("\n");
 }
 
-void babar(torseur *t, int origine, int nb_point){
+
 
 	int k = 0, i = 0; 	// i=torseur k=x y z
 
@@ -117,9 +108,40 @@ void babar(torseur *t, int origine, int nb_point){
 	printf("\n");
 
   AfficherMoments(t,0);
-	AfficherMoments(t,1);
-  AfficherMoments(t,2); // AfficherMoments(t,2);marche pas pour 3 torseurs
+	AfficherMoments(t,1); // AfficherMoments(t,2);marche pas pour 3 torseurs
+  AfficherMoments(t,2);
+
 }
+
+/*
+Affichage des des résultats
+*/
+
+
+void AfficherForces(torseur* t, int i){
+    int j;
+    printf("\n\n---- Calcul des forces ----\n\n");
+    printf("NOM : %s\n",t[i].nom);
+    printf("FORCES : ");
+    for (j = 0 ; j < 3 ; j++){
+        printf("%f ",t[i].f[j]);
+    }
+    printf("\n");
+
+}
+
+
+void AfficherMoments(torseur* t, int i){
+    int j;
+    printf("\n\n---- Calcul des Moments en 0 ----\n\n");
+    printf("NOM : %s\n",t[i].nom);
+    printf("MOMENTS : ");
+    for (j = 0 ; j < 3 ; j++){
+        printf("%f ",t[i].m[j]);
+    }
+    printf("\n");
+}
+
 
 void AfficherlesTorseurs(torseur *t, int i){
 
@@ -131,3 +153,25 @@ void AfficherlesTorseurs(torseur *t, int i){
   printf("ah");
 
 }
+
+void affichercourbe(torseur *t){
+
+  int i,limite = 20;
+  double x[157], y[157];
+  gnuplot_ctrl *h;
+  h = gnuplot_init();
+
+  gnuplot_setstyle(h, "lines");
+
+  for (i = 0 ; i < limite ; i++){
+
+    x[i] = (double)i;
+    y[i] = (double)i + 5;
+
+  }
+  gnuplot_plot_xy(h, x, y, limite, "TEST :)");
+  sleep(2);
+
+  return;
+}
+

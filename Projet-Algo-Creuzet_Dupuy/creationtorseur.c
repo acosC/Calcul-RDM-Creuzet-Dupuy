@@ -1,5 +1,17 @@
 #include "rdm.h"
 
+
+/*
+Détail de la collecte des données :
+
+-Paramètres du problème
+-Initialisation et création des Torseurs
+-Localisation de ces derniers
+-Mise en évidence des paramètres inconnus
+
+-Banque de données des types de liaisons et leurs torseurs associés
+*/
+
 const int valMax = 4;
 
 void NombrePoints(int nombre_point){
@@ -26,6 +38,7 @@ void Initialisation(int i, torseur* t){
         t[i].m[j] = 1;
     }
 }
+
 
 void Localisation(int var, torseur* t, int i, int origine){
 
@@ -190,6 +203,22 @@ void Forces(int var, torseur* t, int i, int forces){
 }
 
 
+
+void Initialisation(int i, torseur* t){
+
+    int j;
+
+    for (j = 0 ; j < 3 ; j++){
+        t[i].f[j] = 1;
+        t[i].m[j] = 1;
+    }
+   }
+
+/*
+scinder la fonction entrer torseur pour permettre de définir
+si il est à l'origine ou non. (éviter répétition de la qst)
+*/
+
 int EntrerTorseurInit(int i, torseur t[valMax], int var, int origine){
     origine = -1;
 
@@ -238,6 +267,11 @@ int EntrerTorseurInit(int i, torseur t[valMax], int var, int origine){
     AfficherTorseur(t, i);
 
 }
+
+/*
+Affichages de vérification :
+*/
+
 
 void AfficherTorseur(torseur* t, int i){
     printf("\n\n----RECAP Torseur----\n\n");
