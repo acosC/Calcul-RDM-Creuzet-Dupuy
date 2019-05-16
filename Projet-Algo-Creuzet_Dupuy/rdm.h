@@ -26,11 +26,15 @@ typedef struct{
     double f[3];
     double c[3];
     char nom[1];
-    liaison l;
-    int inconnu_f;  // nb d'inconnues
-    int inconnu_m;
-}torseur;
+    liaison l;   
+    int inconnu;
+    }torseur;
 
+typedef struct{
+    double m[3];
+    double f[3];
+    double c[3];
+}torseur_cohesion;
 
 /*
 Création des prototypes des fonctions du programme :
@@ -53,13 +57,14 @@ void ResolForce3Torseurs(torseur* t);
 void AfficherForces(torseur* t, int i);
 
 //Moments
-void babar(torseur *t, int origine);
+void babar(torseur *t, int origine, int nb_point);
 void AfficherMoments(torseur* t, int i);
 
 //torseurs
 void AfficherlesTorseurs(torseur *t, int i);
 
 //Graphique
-void affichercourbe(torseur *t);
+void Initialisation_cohesion(torseur_cohesion *tc, int i);
+void Affichercourbe(torseur *t, int* ptr_longueur);
 
 #endif // RDM_H_INCLUDED
