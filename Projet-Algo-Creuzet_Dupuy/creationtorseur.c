@@ -20,18 +20,17 @@ void Initialisation(int i, torseur* t){
 
     int j;
 
+    t[i].l = -1;
     for (j = 0 ; j < 3 ; j++){
         t[i].f[j] = 1;
         t[i].m[j] = 1;
     }
-   }
+}
 
 void Localisation(int var, torseur* t, int i, int origine){
 
     if (var == 2){
         t[i].c[2] = 0;
-        t[i].inconnu_f = 2;
-        t[i].inconnu_m = 1;
         if (origine==0)
         {
           t[i].c[0] = 0;
@@ -49,8 +48,6 @@ void Localisation(int var, torseur* t, int i, int origine){
     }
 
     if (var == 3){
-        t[i].inconnu_f = 3;
-        t[i].inconnu_m = 3;
         if (origine==0)
         {
           t[i].c[0] = 0;
@@ -75,57 +72,33 @@ void Liaison(int liaison, torseur* t, int i, int var){
     switch (liaison){
     case 0:
         if (var == 2){
-            t[i].inconnu_f = 2;
-            t[i].inconnu_m = 1;
             t[i].f[2] = 0;
             t[i].m[0] = 0;
             t[i].m[1] = 0;
-        }
-        if (var == 3){
-            t[i].inconnu_f = 3;
-            t[i].inconnu_m = 3;
         }
         break;
 
     case 1:
         if (var == 2){
-            t[i].inconnu_f = 1;
-            t[i].inconnu_m = 1;
             t[i].f[2] = 0;
             t[i].m[0] = 0;
             t[i].m[1] = 0;
-        }
-        if (var == 3){
-            t[i].inconnu_f = 2;
-            t[i].inconnu_m = 3;
         }
         t[i].f[0] = 0;
         break;
 
     case 2 :
         if (var == 2){
-            t[i].inconnu_f = 2;
-            t[i].inconnu_m = 1;
             t[i].f[2] = 0;
             t[i].m[1] = 0;
-        }
-        if (var == 3){
-            t[i].inconnu_f = 3;
-            t[i].inconnu_m = 2;
         }
         t[i].m[0] = 0;
         break;
 
     case 3 :
         if (var == 2){
-            t[i].inconnu_f = 1;
-            t[i].inconnu_m = 1;
             t[i].f[2] = 0;
             t[i].m[1] = 0;
-        }
-        if (var == 3){
-            t[i].inconnu_f = 2;
-            t[i].inconnu_m = 2;
         }
         t[i].m[0] = 0;
         t[i].f[0] = 0;
@@ -133,13 +106,7 @@ void Liaison(int liaison, torseur* t, int i, int var){
 
     case 4 :
         if (var == 2){
-            t[i].inconnu_f = 1;
-            t[i].inconnu_m = 1;
             t[i].f[2] = 0;
-        }
-        if (var == 3){
-            t[i].inconnu_f = 2;
-            t[i].inconnu_m = 2;
         }
         t[i].m[0] = 0;
         t[i].m[1] = 0;
@@ -147,14 +114,6 @@ void Liaison(int liaison, torseur* t, int i, int var){
         break;
 
     case 5 :
-        if (var == 2){
-            t[i].inconnu_f = 1;
-            t[i].inconnu_m = 1;
-        }
-        if (var == 3){
-            t[i].inconnu_f = 2;
-            t[i].inconnu_m = 2;
-        }
         t[i].m[0] = 0;
         t[i].m[1] = 0;
         t[i].f[2] = 0;
@@ -163,13 +122,7 @@ void Liaison(int liaison, torseur* t, int i, int var){
 
     case 6 :
         if (var == 2){
-            t[i].inconnu_f = 1;
-            t[i].inconnu_m = 0;
             t[i].f[2] = 0;
-        }
-        if (var == 3){
-            t[i].inconnu_f = 2;
-            t[i].inconnu_m = 0;
         }
         t[i].m[2] = 0;
         t[i].m[0] = 0;
@@ -179,13 +132,7 @@ void Liaison(int liaison, torseur* t, int i, int var){
 
     case 7 :
         if (var == 2){
-            t[i].inconnu_f = 0;
-            t[i].inconnu_m = 0;
             t[i].f[2] = 0;
-        }
-        if (var == 3){
-            t[i].inconnu_f = 1;
-            t[i].inconnu_m = 0;
         }
         t[i].m[2] = 0;
         t[i].m[1] = 0;
@@ -202,6 +149,7 @@ void Forces(int var, torseur* t, int i, int forces){
 
     switch(forces){
     case 0 :
+        t[i].inconnu = 0;
         while (j < 3){
             if (t[i].f[j] != 0){
                 if (j == 0)
@@ -230,6 +178,7 @@ void Forces(int var, torseur* t, int i, int forces){
         break;
 
     case 1 :
+        t[i].inconnu = 1;
         for (j = 0 ; j < 3 ; j++){
             if (t[i].f[j] != 0)
                 t[i].f[j] = -1;
@@ -295,7 +244,6 @@ void AfficherTorseur(torseur* t, int i){
     printf("NOM : %s\n",t[i].nom);
     printf("TYPE : %i\n",t[i].l);
     printf("COORD : %lf et %lf\n",t[i].c[0], t[i].c[1]);
-    printf("INC : %i\n",t[i].inconnu_f);
     printf("FORCES : %lf, %lf et %lf\n\n",t[i].f[0], t[i].f[1], t[i].f[2]);
     printf("MOMENTS : %lf, %lf et %lf\n\n",t[i].m[0], t[i].m[1], t[i].m[2]);
 }
