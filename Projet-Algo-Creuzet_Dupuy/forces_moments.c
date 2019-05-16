@@ -1,5 +1,4 @@
 #include "rdm.h"
-#include "gnuplot_i.h"
 
 void AfficherForces(torseur* t, int i){
     int j;
@@ -47,7 +46,9 @@ void ResolForce3Torseurs(torseur *t){ //Cas " tors 1 inc
                 t[k+1].f[i] = -(t[k].f[i] + t[k+2].f[i]);
 
         else
-            t[k+2].f[i] = -(t[k].f[i] + t[k+1].f[i]);
+            if (t[k+2].f[i] == -1)
+
+              t[k+2].f[i] = -(t[k].f[i] + t[k+1].f[i]);
     }
 
     AfficherForces(t, 0);
@@ -67,7 +68,7 @@ void AfficherMoments(torseur* t, int i){
     printf("\n");
 }
 
-void babar(torseur *t, int origine){
+void babar(torseur *t, int origine, int nb_point){
 
 	int k = 0, i = 0; 	// i=torseur k=x y z
 
@@ -78,28 +79,46 @@ void babar(torseur *t, int origine){
     }
   }
 
-	for (i = 0 ; i < 3 ; i++)
-	{
-    t[i].m[2] = t[i].m[2]+(t[i].c[0]*t[i].f[1])-(t[i].c[1]*t[i].f[0]);
-		t[i].m[0] = t[i].m[0]+(t[i].c[1]*t[i].f[2])-(t[i].c[2]*t[i].f[1]);
-		t[i].m[1] = t[i].m[1]+(t[i].c[2]*t[i].f[0])-(t[i].c[0]*t[i].f[2]);
+	for (i = 0 ; i < 3 ; i++){
+    if (t[i].inconnu == 1){
+      t[i].m[2] = t[i].m[2]+(t[i].c[0]*t[i].f[1])-(t[i].c[1]*t[i].f[0]);
+  		t[i].m[0] = t[i].m[0]+(t[i].c[1]*t[i].f[2])-(t[i].c[2]*t[i].f[1]);
+  		t[i].m[1] = t[i].m[1]+(t[i].c[2]*t[i].f[0])-(t[i].c[0]*t[i].f[2]);
+    }
 	}
 
-  for (i = 0 ; i <3 ; i++){
-    if (i != origine){
-      t[i].m[2] = -t[origine].m[2] - t[i].m[2];
-  		t[i].m[0] = -t[origine].m[0] - t[i].m[0];
-  		t[i].m[1] = -t[origine].m[1] - t[i].m[1];
+  if (nb_point == 2) {
+    for (i = 0 ; i < 3 ; i++){
+      if (i != origine){
+        t[i].m[2] = -t[origine].m[2] - t[i].m[2];
+        t[i].m[0] = -t[origine].m[0] - t[i].m[0];
+        t[i].m[1] = -t[origine].m[1] - t[i].m[1];
+      }
+    }
+  }
 
+  if (nb_point == 3) {
+    for (i = 0 ; i < nb_point ; i++) {
+      if (t[i].inconnu == 1){
+        if (i == 1){
+          t[i].m[2] = -t[0].m[2] - t[i].m[2] - t[2].m[2] - (t[2].c[0]*t[2].f[1]);
+          t[i].m[0] = -t[0].m[0] - t[i].m[0] - t[2].m[0] - (t[2].c[1]*t[2].f[2]);
+          t[i].m[1] = -t[0].m[1] - t[i].m[1] - t[2].m[1] - (t[2].c[2]*t[2].f[0]);
+        }
+        if (i == 2){
+          t[i].m[2] = -t[0].m[2] - t[i].m[2] - t[1].m[2] - (t[1].c[0]*t[1].f[1]);
+          t[i].m[0] = -t[0].m[0] - t[i].m[0] - t[1].m[0] - (t[1].c[1]*t[1].f[2]);
+          t[i].m[1] = -t[0].m[1] - t[i].m[1] - t[1].m[1] - (t[1].c[2]*t[1].f[0]);
+        }
+      }
     }
   }
 
 	printf("\n");
 
   AfficherMoments(t,0);
-	AfficherMoments(t,1); // AfficherMoments(t,2);marche pas pour 3 torseurs
-  AfficherMoments(t,2);
-  
+	AfficherMoments(t,1);
+  AfficherMoments(t,2); // AfficherMoments(t,2);marche pas pour 3 torseurs
 }
 
 void AfficherlesTorseurs(torseur *t, int i){
@@ -109,26 +128,6 @@ void AfficherlesTorseurs(torseur *t, int i){
   printf("||%lf | %lf||\n",t[i].f[0], t[i].m[0]);
   printf("||%lf | %lf||\n",t[i].f[1], t[i].m[1]);
   printf("||%lf | %lf||\n",t[i].f[2], t[i].m[2]);
+  printf("ah");
 
-}
-
-void affichercourbe(torseur *t){
-
-  int i,limite = 20;
-  double x[157], y[157];
-  gnuplot_ctrl *h;
-  h = gnuplot_init();
-
-  gnuplot_setstyle(h, "lines");
-
-  for (i = 0 ; i < limite ; i++){
-
-    x[i] = (double)i;
-    y[i] = (double)i + 5;
-
-  }
-  gnuplot_plot_xy(h, x, y, limite, "TEST :)");
-  sleep(2);
-
-  return;
 }
