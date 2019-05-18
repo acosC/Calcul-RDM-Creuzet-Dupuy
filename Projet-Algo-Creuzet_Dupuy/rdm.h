@@ -26,7 +26,7 @@ typedef struct{
     double f[3];
     double c[3];
     char nom[1];
-    liaison l;   
+    liaison l;
     int inconnu;
     }torseur;
 
@@ -41,14 +41,19 @@ Création des prototypes des fonctions du programme :
 */
 
 void NombrePoints(int nombre_point);
+void Dimension(int var);
+void Fctlongueur(int longueur,torseur *t);
+void CreationT(int i,int nb_point,torseur *t,int var);
+void MenuChoix(int ChoixUtilisateur,torseur *t,int origine);
 void Initialisation(int i,torseur* t);
-void Localisation(int pb_plan, torseur* t, int i, int origine);
+int Origine(int origine,int i);
+int Localisation(int pb_plan, torseur* t, int i, int origine);
 
 //int Orientation(torseur* t, int var);
 void Liaison(int liaison, torseur* t, int i, int var);
 void Forces(int var, torseur* t, int i, int forces);
-int EntrerTorseurInit(int numero_torseur, torseur t[5], int variation, int origine);
-void EntrerTorseurFin(int i, torseur t[5], int var, int origine);
+
+int EntrerTorseur(int numero_torseur, torseur t[5], int variation,int origine);
 void AfficherTorseur(torseur* t, int i);
 
 //Résultante
@@ -58,7 +63,7 @@ void AfficherForces(torseur* t, int i);
 
 //Moments
 void babar(torseur *t, int origine, int nb_point);
-void AfficherMoments(torseur* t, int i);
+void AfficherMoments(torseur* t, int i,int nb_point);
 
 //torseurs
 void AfficherlesTorseurs(torseur *t, int i);

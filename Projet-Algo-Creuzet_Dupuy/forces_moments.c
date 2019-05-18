@@ -2,14 +2,18 @@
 #include "gnuplot_i.h"
 
 
-void ResolForce2Torseurs(torseur *t){ //Cas simple
+void ResolForce2Torseurs(torseur *t)
+{
+   //Cas simple
 
     int k = 0, i = 0;
 
-    for (i = 0 ; i < 3 ; i++){
-       if (t[k].f[i] == -1){
+    for (i = 0 ; i < 3 ; i++)
+    {
+       if (t[k].f[i] == -1)
+       {
             t[k].f[i] = -(t[k+1].f[i]);
-        }
+       }
 
         else if (t[k+1].f[i] == -1)
             t[k+1].f[i] = -(t[k].f[i]);
@@ -19,27 +23,32 @@ void ResolForce2Torseurs(torseur *t){ //Cas simple
     AfficherForces(t, 1);
 }
 
-void ResolForce3Torseurs(torseur *t){ //Cas " tors 1 inc
+void ResolForce3Torseurs(torseur *t)
+{ //Cas " tors 1 inc
 
 //test t[k+1].f.x == -2 && t[k+2].f.x != -2)
 
     int k = 0, i = 0;
 
-    for (i = 0 ; i < 3 ; i++){
-        if (t[k].f[i] == -1){
+    for (i = 0 ; i < 3 ; i++)
+    {
+        if (t[k].f[i] == -1)
+        {
 
             t[k].f[i] = -(t[k+1].f[i] + t[k+2].f[i]);
         }
 
         else
             if (t[k+1].f[i] == -1)
+            {
 
                 t[k+1].f[i] = -(t[k].f[i] + t[k+2].f[i]);
-
+            }
         else
             if (t[k+2].f[i] == -1)
-
+            {
               t[k+2].f[i] = -(t[k].f[i] + t[k+1].f[i]);
+            }
     }
 
     AfficherForces(t, 0);
@@ -48,39 +57,46 @@ void ResolForce3Torseurs(torseur *t){ //Cas " tors 1 inc
 }
 
 
-void AfficherMoments(torseur* t, int i, int nb_point){
-    int j;
+void AfficherMoments(torseur* t, int i, int nb_point)
+{
+    int j,k = 0,origine = -1;	// i=torseur k=x y z
+    
     printf("\n\n---- Calcul des Moments en 0 ----\n\n");
     printf("NOM : %s\n",t[i].nom);
     printf("MOMENTS : ");
-    for (j = 0 ; j < 3 ; j++){
+
+    for (j = 0 ; j < 3 ; j++)
+    {
         printf("%f ",t[i].m[j]);
     }
+
     printf("\n");
-}
 
-
-
-	int k = 0, i = 0; 	// i=torseur k=x y z
-
-  for (i = 0 ; i < 3 ; i++){
-    for (k = 0 ; k < 3 ; k++){
+  for (i = 0 ; i < 3 ; i++)
+  {
+    for (k = 0 ; k < 3 ; k++)
+    {
       if(t[i].m[k] == -1)
         t[i].m[k] = 0;
     }
   }
 
-	for (i = 0 ; i < 3 ; i++){
-    if (t[i].inconnu == 1){
+	for (i = 0 ; i < 3 ; i++)
+  {
+    if (t[i].inconnu == 1)
+    {
       t[i].m[2] = t[i].m[2]+(t[i].c[0]*t[i].f[1])-(t[i].c[1]*t[i].f[0]);
   		t[i].m[0] = t[i].m[0]+(t[i].c[1]*t[i].f[2])-(t[i].c[2]*t[i].f[1]);
   		t[i].m[1] = t[i].m[1]+(t[i].c[2]*t[i].f[0])-(t[i].c[0]*t[i].f[2]);
     }
 	}
 
-  if (nb_point == 2) {
-    for (i = 0 ; i < 3 ; i++){
-      if (i != origine){
+  if (nb_point == 2)
+  {
+    for (i = 0 ; i < 3 ; i++)
+    {
+      if (i != origine)
+      {
         t[i].m[2] = -t[origine].m[2] - t[i].m[2];
         t[i].m[0] = -t[origine].m[0] - t[i].m[0];
         t[i].m[1] = -t[origine].m[1] - t[i].m[1];
@@ -88,15 +104,20 @@ void AfficherMoments(torseur* t, int i, int nb_point){
     }
   }
 
-  if (nb_point == 3) {
-    for (i = 0 ; i < nb_point ; i++) {
-      if (t[i].inconnu == 1){
-        if (i == 1){
+  if (nb_point == 3)
+  {
+    for (i = 0 ; i < nb_point ; i++)
+    {
+      if (t[i].inconnu == 1)
+      {
+        if (i == 1)
+        {
           t[i].m[2] = -t[0].m[2] - t[i].m[2] - t[2].m[2] - (t[2].c[0]*t[2].f[1]);
           t[i].m[0] = -t[0].m[0] - t[i].m[0] - t[2].m[0] - (t[2].c[1]*t[2].f[2]);
           t[i].m[1] = -t[0].m[1] - t[i].m[1] - t[2].m[1] - (t[2].c[2]*t[2].f[0]);
         }
-        if (i == 2){
+        if (i == 2)
+        {
           t[i].m[2] = -t[0].m[2] - t[i].m[2] - t[1].m[2] - (t[1].c[0]*t[1].f[1]);
           t[i].m[0] = -t[0].m[0] - t[i].m[0] - t[1].m[0] - (t[1].c[1]*t[1].f[2]);
           t[i].m[1] = -t[0].m[1] - t[i].m[1] - t[1].m[1] - (t[1].c[2]*t[1].f[0]);
@@ -107,14 +128,14 @@ void AfficherMoments(torseur* t, int i, int nb_point){
 
 	printf("\n");
 
-  AfficherMoments(t,0);
-	AfficherMoments(t,1); // AfficherMoments(t,2);marche pas pour 3 torseurs
-  AfficherMoments(t,2);
-
+  AfficherMoments(t,0,1);
+	AfficherMoments(t,1,2); // AfficherMoments(t,2);marche pas pour 3 torseurs
+  AfficherMoments(t,2,3);
 }
 
+
 /*
-Affichage des des résultats
+Affichage des résultats
 */
 
 
@@ -130,7 +151,7 @@ void AfficherForces(torseur* t, int i){
 
 }
 
-
+/*
 void AfficherMoments(torseur* t, int i){
     int j;
     printf("\n\n---- Calcul des Moments en 0 ----\n\n");
@@ -141,7 +162,7 @@ void AfficherMoments(torseur* t, int i){
     }
     printf("\n");
 }
-
+*/
 
 void AfficherlesTorseurs(torseur *t, int i){
 
@@ -174,4 +195,3 @@ void affichercourbe(torseur *t){
 
   return;
 }
-
