@@ -41,7 +41,6 @@ void Dimension(int var){
 }
 
 void Fctlongueur(int longueur,torseur *t){
-  int origine = -1;
 
   while (longueur < 0){
       printf("Une longueur doit être positive ");
@@ -53,11 +52,14 @@ void Fctlongueur(int longueur,torseur *t){
 }
 
 void CreationT(int i,int nb_point,torseur *t,int var){
-  int origine=-1;
+  int origine=1;
   for (i = 0 ; i < nb_point ; i++){
       printf("On va remplir les information du torseur %i\n",i+1);
-      EntrerTorseur(i, t, var,origine);
 
+      printf("origine test 1 %i\n",origine);
+
+
+      origine=EntrerTorseur(i, t, var,origine);
   }
 }
 
@@ -127,13 +129,10 @@ void Initialisation(int i, torseur* t){
 }
 
 int Origine(int origine,int i){
-  if (origine == -1){
-    printf("Est-ce le point d'origine ? (-2 : oui | -1 : non)\n");
+  if (origine == 1 ){
+    printf("Est-ce le point d'origine ? (0 : oui | 1 : non)\n");
     scanf("%i",&origine);
-  }
-  if (origine == -2){
-      origine = i;
-    }
+}
   return origine;
 }
 
@@ -142,12 +141,13 @@ int Localisation(int var, torseur* t, int i, int origine){
 
     origine=Origine(origine,i);
 
-    printf("wow %d\n",origine); //test
+    printf("test origine 2 %d\n",origine); //test
 
     if (var == 2){
         t[i].c[2] = 0;
-        if (origine == 0 ||origine == 1 || origine == 2)
+        if (origine == 0)
         {
+          origine=2;
           t[i].c[0] = 0;
           t[i].c[1] = 0;
         }
@@ -160,8 +160,9 @@ int Localisation(int var, torseur* t, int i, int origine){
           }
     }
     if (var == 3){
-        if (origine == 0 ||origine == 1 || origine == 2)
+        if (origine == 0)
         {
+          origine=2;
           t[i].c[0] = 0;
           t[i].c[1] = 0;
           t[i].c[2] = 0;
@@ -317,7 +318,9 @@ int EntrerTorseur(int i, torseur t[valMax], int var, int origine){
     printf("Comment s'appelle votre point ? ");
     scanf("%s",t[i].nom);
 
-    Localisation(var, t, i, origine);
+    origine=Localisation(var, t, i, origine);
+
+    printf("test origine 3 %i\n",origine);
 
     printf("Quelle est la liaison de votre point ?\n");
     printf("0 - Encastrement\n");

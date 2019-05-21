@@ -1,7 +1,13 @@
 #include "rdm.h"
 #include "gnuplot_i.h"
 
+/*
+Recherche des incconues :
 
+Résolution des systèmes constituant le PFS
+Affichage des résultantes
+Affichage des Moments
+*/
 void ResolForce2Torseurs(torseur *t)
 {
    //Cas simple
@@ -60,7 +66,7 @@ void ResolForce3Torseurs(torseur *t)
 void AfficherMoments(torseur* t, int i, int nb_point)
 {
     int j,k = 0,origine = -1;	// i=torseur k=x y z
-    
+
     printf("\n\n---- Calcul des Moments en 0 ----\n\n");
     printf("NOM : %s\n",t[i].nom);
     printf("MOMENTS : ");
@@ -173,25 +179,4 @@ void AfficherlesTorseurs(torseur *t, int i){
   printf("||%lf | %lf||\n",t[i].f[2], t[i].m[2]);
   printf("ah");
 
-}
-
-void affichercourbe(torseur *t){
-
-  int i,limite = 20;
-  double x[157], y[157];
-  gnuplot_ctrl *h;
-  h = gnuplot_init();
-
-  gnuplot_setstyle(h, "lines");
-
-  for (i = 0 ; i < limite ; i++){
-
-    x[i] = (double)i;
-    y[i] = (double)i + 5;
-
-  }
-  gnuplot_plot_xy(h, x, y, limite, "TEST :)");
-  sleep(2);
-
-  return;
 }
