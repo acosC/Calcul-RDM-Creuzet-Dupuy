@@ -72,6 +72,6 @@ void AfficherlesTorseurs(torseur *t, int i);
 void Initialisation_cohesion(torseur_cohesion *tc, int i);
 void Affichercourbe(torseur *t, int* ptr_longueur);
 void sleep(int o);
-void close();
+
 
 #endif // RDM_H_INCLUDED
