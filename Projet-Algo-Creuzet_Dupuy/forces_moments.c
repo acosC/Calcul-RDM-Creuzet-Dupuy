@@ -1,4 +1,11 @@
 #include "rdm.h"
+/*
+Recherche des incconues :
+
+Résolution des systèmes constituant le PFS
+Affichage des résultantes
+Affichage des Moments
+*/
 
 void AfficherForces(torseur* t, int i){
     int j;
@@ -142,3 +149,4 @@ void AfficherlesTorseurs(torseur *t, int i){
   printf("ah");
 
 }
+
