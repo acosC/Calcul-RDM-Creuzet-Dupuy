@@ -1,18 +1,19 @@
 #include "rdm.h"
+#include <assert.h>
 
 const int valMax = 4;
 
 void NombrePoints(int nombre_point){
 
-    while (nombre_point > 4 || nombre_point <= 0){
-        while (nombre_point <= 0){
+  while (nombre_point > 4 || nombre_point <= 0){
+      while (nombre_point <= 0){
         printf("Vous ne pouvez pas avoir un nombre de point negatif, combien de points avez-vous dans votre exercice ? ");
         scanf("%i",&nombre_point);
         }
-        while (nombre_point > 3){
+      while (nombre_point > 3){
         printf("Vous ne pouvez pas nous donner trop de points, combien de poins avez-vous dans ton exercice ? ");
         scanf("%i",&nombre_point);
-        }
+      }
     }
 }
 
@@ -29,6 +30,8 @@ void Initialisation(int i, torseur* t){
 
 void Localisation(int var, torseur* t, int i, int origine){
 
+    int a = 0;
+
     if (var == 2){
         t[i].c[2] = 0;
         if (origine==0)
@@ -40,6 +43,9 @@ void Localisation(int var, torseur* t, int i, int origine){
           printf("Ou est-il localise ?\n");
           printf("en x : ");
           scanf("%lf",&t[i].c[0]);
+          if (t[i].c[0] < -2000000 || t[i].c[0] > 200000){
+            assert(a == 0);
+          }
           printf("en y : ");
           scanf("%lf",&t[i].c[1]);
 

@@ -8,7 +8,6 @@ int main()
     int nb_point, i, var = -1, a = 0, origine = -1, longueur = -1;
     int ChoixUtilisateur = 0;
 
-    int* ptr_longueur = NULL;
     torseur_cohesion toco[3];
 
     printf("Bonjour, nous allons vous aider dans la resolution de votre probleme de RDM.\n");
@@ -37,8 +36,6 @@ int main()
         printf("Une longueur doit être positive ");
         scanf("%i",&longueur);
     }
-
-    ptr_longueur = &longueur;
 
     for (i = 0 ; i < nb_point ; i++){
         printf("On va remplir les information du torseur %i\n",i+1);
@@ -85,7 +82,9 @@ int main()
 
         case 5 :
             printf("Voici vos diagrammes\n");
-            Affichercourbe(t, ptr_longueur);
+            EffortNormal(t,longueur,nb_point);
+            EffortTranchant(t,longueur,nb_point);
+            MomentdeFlexionZ(t,longueur,nb_point);
             break;
 
         case 6 :

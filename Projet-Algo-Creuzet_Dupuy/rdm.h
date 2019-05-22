@@ -48,6 +48,8 @@ void AfficherlesTorseurs(torseur *t, int i);
 
 //Graphique
 void Initialisation_cohesion(torseur_cohesion *tc, int i);
-void Affichercourbe(torseur *t, int* ptr_longueur);
+void EffortNormal(torseur *t, int longueur, int nb_point);
+void EffortTranchant(torseur *t, int longueur, int nb_point);
+void MomentdeFlexionZ(torseur *t, int longueur, int nb_point);
 
 #endif // RDM_H_INCLUDED
