@@ -52,7 +52,6 @@ int Localisation(int pb_plan, torseur* t, int i, int origine);
 //int Orientation(torseur* t, int var);
 void Liaison(int liaison, torseur* t, int i, int var);
 void Forces(int var, torseur* t, int i, int forces);
-
 int EntrerTorseur(int numero_torseur, torseur t[5], int variation,int origine);
 void AfficherTorseur(torseur* t, int i);
 
@@ -70,7 +69,9 @@ void AfficherlesTorseurs(torseur *t, int i);
 
 //Graphique
 void Initialisation_cohesion(torseur_cohesion *tc, int i);
-void Affichercourbe(torseur *t, int* ptr_longueur);
+void EffortNormal(torseur *t, int longueur, int nb_point);
+void EffortTranchant(torseur *t, int longueur, int nb_point);
+void MomentdeFlexionZ(torseur *t, int longueur, int nb_point);
 void sleep(int o);
 
 

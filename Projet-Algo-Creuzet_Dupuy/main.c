@@ -3,12 +3,12 @@
 #include <assert.h>
 #include "rdm.h"
 
-
 /*
 Interface utilisateur-->Questions à choix multiple
 
 Constitution des éléments nécessaires à la résolution du problème.
 Renvoi aux fonctions de "créationtorseur.c"
+
 
 Menu de résolution, affichage des données calculées.
 */
@@ -16,9 +16,12 @@ Menu de résolution, affichage des données calculées.
 
 int main()
 {
+  
   int nb_point, i, var = -1, a = 0, origine = -1, longueur = -1;
   int ChoixUtilisateur = 0;
   torseur_cohesion toco[3];
+  
+  
     printf("\n=============================Calcul-Rdm-Dupuy-Creuzet===========================\n\n");
     printf("Bonjour, nous allons vous aider dans la resolution de votre probleme de RDM.\n");
     printf("Quelques questions pour comprendre l'exercice : \n");
@@ -52,6 +55,7 @@ int main()
     printf("6 - Quitter le programme\n");
     printf("\nVeuillez entrer votre choix !\n");
     scanf("%i",&ChoixUtilisateur);
+
 
     MenuChoix(ChoixUtilisateur,t,origine);
 
