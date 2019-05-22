@@ -16,12 +16,12 @@ Menu de résolution, affichage des données calculées.
 
 int main()
 {
-  
+
   int nb_point, i, var = -1, a = 0, origine = -1, longueur = -1;
   int ChoixUtilisateur = 0;
   torseur_cohesion toco[3];
-  
-  
+
+
     printf("\n=============================Calcul-Rdm-Dupuy-Creuzet===========================\n\n");
     printf("Bonjour, nous allons vous aider dans la resolution de votre probleme de RDM.\n");
     printf("Quelques questions pour comprendre l'exercice : \n");
@@ -38,7 +38,6 @@ int main()
     scanf("%i", &var);
 
     Dimension(var);
-
 
     printf("Quelle est la longueur de la poutre étudiée ? ");
     scanf("%i", &longueur);
