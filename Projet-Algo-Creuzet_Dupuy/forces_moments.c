@@ -69,7 +69,7 @@ void AfficherMoments(torseur* t, int i){
     printf("\n\n---- Calcul des Moments en 0 ----\n\n");
     printf("NOM : %s\n",t[i].nom);
     printf("MOMENTS : ");
-    for (j = 0 ; j < 3 ; j++){
+    for (j = 0 ; j < nb_point ; j++){
         printf("%f ",t[i].m[j]);
     }
     printf("\n");
@@ -149,4 +149,3 @@ void AfficherlesTorseurs(torseur *t, int i){
   printf("ah");
 
 }
-

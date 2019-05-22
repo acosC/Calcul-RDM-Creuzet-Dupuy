@@ -62,7 +62,7 @@ void AfficherForces(torseur* t, int i);
 
 //Moments
 void babar(torseur *t, int origine, int nb_point);
-void AfficherMoments(torseur* t, int i,int nb_point);
+void AfficherMoments(torseur* t, int i);
 
 //torseurs
 void AfficherlesTorseurs(torseur *t, int i);
