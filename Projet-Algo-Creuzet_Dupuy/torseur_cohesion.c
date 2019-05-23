@@ -1,13 +1,16 @@
 #include "rdm.h"
 #include "gnuplot_i.h"
 
-void Initialisation_cohesion(torseur_cohesion *tc, int i){
+void Initialisation_cohesion(torseur_cohesion *tc){
 
-      int j;
+      int j,i;
+      for (i = 0 ; i < 3 ; i++) {
 
-      for (j = 0 ; j < 3 ; j++){
-          tc[i].f[j] = 0;
-          tc[i].m[j] = 0;
+        for (j = 0 ; j < 3 ; j++){
+            tc[i].f[j] = 0;
+            tc[i].m[j] = 0;
+        }
+
       }
 }
 
@@ -145,7 +148,7 @@ void EffortTranchant(torseur *t, int longueur, int nb_point){
   gnuplot_setstyle(h, "linespoints");   //pas touche deco
 
   if (nb_point == 2 && t[1].c[0] == (double)longueur){ //si 2 torseurs qui parcourent toute la poutre
-    if (t[0].f[1] != 0 && t[1].f[1] != 0){  //cas ou l'effort normal existe
+    if (t[0].f[1] != 0 && t[1].f[1] != 0){  //cas ou l'effort tranchant existe
       for (i = 0 ; i < longueur ; i++){   //une seule zone a etudier
 
         x[i] = (double)i;
@@ -154,7 +157,7 @@ void EffortTranchant(torseur *t, int longueur, int nb_point){
       }
     }
     else{
-      for (i = 0 ; i <= longueur ; i++){  //cas ou l'effort normal n'existe pas
+      for (i = 0 ; i <= longueur ; i++){  //cas ou l'effort tranchant n'existe pas
 
         x[i] = (double)i;
         y[i] = (double)0;
@@ -164,7 +167,7 @@ void EffortTranchant(torseur *t, int longueur, int nb_point){
   }
 
   if (nb_point == 2 && t[1].c[0] != longueur){ //si 2 torseurs qui ne parcourent pas toute la poutre -> 2 zones a etudier
-    if (t[0].f[1] != 0 && t[1].f[1] != 0){  //cas ou l'effort normal existe
+    if (t[0].f[1] != 0 && t[1].f[1] != 0){  //cas ou l'effort tranchant existe
 
       for (i = 0 ; i <= t[1].c[0] ; i++){ //1ere zone etudier entre les 2 torseurs
 
@@ -182,7 +185,7 @@ void EffortTranchant(torseur *t, int longueur, int nb_point){
     }
 
     else{
-      for (i = 0 ; i <= longueur ; i++){  //cas ou l'effort normal n'existe pas
+      for (i = 0 ; i <= longueur ; i++){  //cas ou l'effort tranchant n'existe pas
 
         x[i] = (double)i;
         y[i] = (double)0;
@@ -192,7 +195,7 @@ void EffortTranchant(torseur *t, int longueur, int nb_point){
   }
 
   if (nb_point == 3 && t[2].c[0] == (double)longueur){ //si 3 torseurs qui parcourent toute la poutre -> 2 zones a etudier
-    if (t[0].f[1] != 0 && t[1].f[1] != 0 && t[2].f[1] != 0){  //cas ou l'effort normal existe
+    if (t[0].f[1] != 0 && t[1].f[1] != 0 && t[2].f[1] != 0){  //cas ou l'effort tranchant existe
 
       for (i = 0 ; i < t[1].c[0]+1 ; i++){ //1ere zone a etudier entre 1er et 2eme torseur
 
@@ -210,7 +213,7 @@ void EffortTranchant(torseur *t, int longueur, int nb_point){
 
     }
     else{
-      for (i = 0 ; i <= longueur ; i++){  //cas ou l'effort normal n'existe pas
+      for (i = 0 ; i <= longueur ; i++){  //cas ou l'effort tranchant n'existe pas
 
         x[i] = (double)i;
         y[i] = (double)0;
@@ -220,7 +223,7 @@ void EffortTranchant(torseur *t, int longueur, int nb_point){
   }
 
   if (nb_point == 3 && t[2].c[0] != longueur){ //si 3 torseurs qui ne parcourt pas toute la poutre -> 3 zones a etudier
-    if (t[0].f[1] != 0 && t[1].f[1] != 0 && t[2].f[1] != 0){  //cas ou l'effort normal existe
+    if (t[0].f[1] != 0 && t[1].f[1] != 0 && t[2].f[1] != 0){  //cas ou l'effort tranchant existe
 
       for (i = 0 ; i <= t[1].c[0] ; i++){ //1ere zone a etudier entre le 1er et le 2eme torseur
 
@@ -244,7 +247,7 @@ void EffortTranchant(torseur *t, int longueur, int nb_point){
       }
     }
     else{
-      for (i = 0 ; i <= longueur ; i++){  //cas ou l'effort normal n'existe pas
+      for (i = 0 ; i <= longueur ; i++){  //cas ou l'effort tranchant n'existe pas
 
         x[i] = (double)i;
         y[i] = (double)0;
@@ -253,7 +256,7 @@ void EffortTranchant(torseur *t, int longueur, int nb_point){
     }
   }
 
-  gnuplot_plot_xy(h, x, y, longueur, "Effort normal (N)");
+  gnuplot_plot_xy(h, x, y, longueur, "Effort tranchant (N)");
   sleep(2);
 
   return;
@@ -388,7 +391,7 @@ void MomentdeFlexionZ(torseur *t, int longueur, int nb_point){
     }
   }
 
-  gnuplot_plot_xy(h, x, y, longueur, "Effort normal (N)");
+  gnuplot_plot_xy(h, x, y, longueur, "Moment de flexion (Nm)");
   sleep(2);
 
 }

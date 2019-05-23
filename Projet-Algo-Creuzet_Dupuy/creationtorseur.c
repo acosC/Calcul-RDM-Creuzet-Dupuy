@@ -19,7 +19,7 @@ const int valMax = 4;
 int* ptr_longueur = NULL;
 int nb_point, i, var = -1, a = 0, longueur = -1;
 
-void NombrePoints(int nombre_point){
+int NombrePoints(int nombre_point){
 
     while (nombre_point > 4 || nombre_point <= 0){
 
@@ -32,6 +32,8 @@ void NombrePoints(int nombre_point){
         scanf("%i",&nombre_point);
         }
     }
+
+    return nombre_point;
 }
 
 void Dimension(int var){
@@ -44,14 +46,14 @@ void Dimension(int var){
   }
 }
 
-void Fctlongueur(int longueur,torseur *t){
+int Fctlongueur(int longueur,torseur *t){
 
   while (longueur < 0){
       printf("Une longueur doit être positive ");
       scanf("%i",&longueur);
   }
 
-  ptr_longueur = &longueur;
+  return longueur;
 
 }
 
@@ -67,7 +69,7 @@ void CreationT(int i,int nb_point,torseur *t,int var){
 
 }
 
-void MenuChoix(int ChoixUtilisateur,torseur *t,int origine){
+void MenuChoix(int ChoixUtilisateur,torseur *t,int origine, int longueur, int nb_point){
 
   do {
       switch(ChoixUtilisateur){
@@ -82,7 +84,7 @@ void MenuChoix(int ChoixUtilisateur,torseur *t,int origine){
 
       case 2 :
           printf("Voici vos moments\n");
-          babar(t, origine, nb_point);
+          babar(t, nb_point);
           break;
 
       case 3 :

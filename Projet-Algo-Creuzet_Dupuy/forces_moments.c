@@ -76,7 +76,7 @@ void AfficherMoments(torseur* t, int i){
     printf("\n");
 }
 
-void babar(torseur *t, int origine, int nb_point){
+void babar(torseur *t, int nb_point){
 
 	int k = 0, i = 0; 	// i=torseur k=x y z
 
@@ -86,6 +86,7 @@ void babar(torseur *t, int origine, int nb_point){
         t[i].m[k] = 0;
     }
   }
+  printf("oui");
 
 	for (i = 0 ; i < 3 ; i++){
     if (t[i].inconnu == 1){

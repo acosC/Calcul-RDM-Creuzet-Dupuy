@@ -40,11 +40,11 @@ typedef struct{
 Création des prototypes des fonctions du programme :
 */
 
-void NombrePoints(int nombre_point);
+int NombrePoints(int nombre_point);
 void Dimension(int var);
-void Fctlongueur(int longueur,torseur *t);
+int Fctlongueur(int longueur,torseur *t);
 void CreationT(int i,int nb_point,torseur *t,int var);
-void MenuChoix(int ChoixUtilisateur,torseur *t,int origine);
+void MenuChoix(int ChoixUtilisateur,torseur *t,int origine, int longueur, int nb_point);
 void Initialisation(int i,torseur* t);
 int Origine(int origine,int i);
 int Localisation(int pb_plan, torseur* t, int i, int origine);
@@ -61,14 +61,14 @@ void ResolForce3Torseurs(torseur* t);
 void AfficherForces(torseur* t, int i);
 
 //Moments
-void babar(torseur *t, int origine, int nb_point);
+void babar(torseur *t, int nb_point);
 void AfficherMoments(torseur* t, int i);
 
 //torseurs
 void AfficherlesTorseurs(torseur *t, int i);
 
 //Graphique
-void Initialisation_cohesion(torseur_cohesion *tc, int i);
+void Initialisation_cohesion(torseur_cohesion *tc);
 void EffortNormal(torseur *t, int longueur, int nb_point);
 void EffortTranchant(torseur *t, int longueur, int nb_point);
 void MomentdeFlexionZ(torseur *t, int longueur, int nb_point);

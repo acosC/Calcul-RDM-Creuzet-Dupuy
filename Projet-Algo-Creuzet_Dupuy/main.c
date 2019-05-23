@@ -22,41 +22,42 @@ int main()
   torseur_cohesion toco[3];
 
 
-    printf("\n=============================Calcul-Rdm-Dupuy-Creuzet===========================\n\n");
-    printf("Bonjour, nous allons vous aider dans la resolution de votre probleme de RDM.\n");
-    printf("Quelques questions pour comprendre l'exercice : \n");
-    printf("\nAvant toute chose :\n");
-    printf("Veillez à entrer vos torseurs dans l'ordre suivant :\n-->origine puis suivant les x croissant\n\n");
-    printf("Combien de points dans votre probleme ? ");
-    scanf("%i",&nb_point);
+  printf("\n=============================Calcul-Rdm-Dupuy-Creuzet===========================\n\n");
+  printf("Bonjour, nous allons vous aider dans la resolution de votre probleme de RDM.\n");
+  printf("Quelques questions pour comprendre l'exercice : \n");
+  printf("\nAvant toute chose :\n");
+  printf("Veillez à entrer vos torseurs dans l'ordre suivant :\n-->origine puis suivant les x croissant\n\n");
+  printf("Combien de points dans votre probleme ? ");
+  scanf("%i",&nb_point);
 
-    NombrePoints(nb_point);
-    torseur t[nb_point];
+  nb_point = NombrePoints(nb_point);
+  torseur t[nb_point];
 
-    printf("Est-t-on sur un probleme a 2 dimensions ou a 3 dimensions ? ");
-    printf("\nEntrez 2 ou 3\n");
-    scanf("%i", &var);
+  Initialisation_cohesion(toco);
 
-    Dimension(var);
+  printf("Est-t-on sur un probleme a 2 dimensions ou a 3 dimensions ? ");
+  printf("\nEntrez 2 ou 3\n");
+  scanf("%i", &var);
 
-    printf("Quelle est la longueur de la poutre étudiée ? ");
-    scanf("%i", &longueur);
+  Dimension(var);
 
-    Fctlongueur(longueur,t);
+  printf("Quelle est la longueur de la poutre étudiée ? ");
+  scanf("%i", &longueur);
 
-    CreationT(i,nb_point,t,var);
+  longueur = Fctlongueur(longueur,t);
 
-    printf("1 - Donnez les Resultantes\n");
-    printf("2 - Donnez les Moments\n");
-    printf("3 - Donnez les Moments en 0\n");
-    printf("4 - Donnez les Torseurs\n");
-    printf("5 - Donnez les Diagrammes\n");
-    printf("6 - Quitter le programme\n");
-    printf("\nVeuillez entrer votre choix !\n");
-    scanf("%i",&ChoixUtilisateur);
+  CreationT(i,nb_point,t,var);
 
+  printf("1 - Donnez les Resultantes\n");
+  printf("2 - Donnez les Moments\n");
+  printf("3 - Donnez les Moments en 0\n");
+  printf("4 - Donnez les Torseurs\n");
+  printf("5 - Donnez les Diagrammes\n");
+  printf("6 - Quitter le programme\n");
+  printf("\nVeuillez entrer votre choix !\n");
+  scanf("%i",&ChoixUtilisateur);
 
-    MenuChoix(ChoixUtilisateur,t,origine);
+  MenuChoix(ChoixUtilisateur,t,origine,longueur,nb_point);
 
-    return 0;
+  return 0;
 }
