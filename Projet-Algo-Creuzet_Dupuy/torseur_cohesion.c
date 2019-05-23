@@ -21,14 +21,14 @@ void EffortNormal(torseur *t, int longueur, int nb_point){
   int i;
   double x[157], y[157];
   gnuplot_ctrl *h;    //on touche pas à ça
-  printf("%i",longueur);
+
   h = gnuplot_init();   //pas touche
 
   gnuplot_setstyle(h, "linespoints");   //pas touche deco
 
   if (nb_point == 2 && t[1].c[0] == (double)longueur){ //si 2 torseurs qui parcourent toute la poutre
     if (t[0].f[0] != 0 && t[1].f[0] != 0){  //cas ou l'effort normal existe
-      for (i = 0 ; i < longueur ; i++){   //une seule zone a etudier
+      for (i = 0 ; i <= longueur + 35 ; i++){   //une seule zone a etudier
 
         x[i] = (double)i;
         y[i] = -t[0].f[0];
@@ -36,7 +36,7 @@ void EffortNormal(torseur *t, int longueur, int nb_point){
       }
     }
     else{
-      for (i = 0 ; i < longueur + 2 ; i++){  //cas ou l'effort normal n'existe pas
+      for (i = 0 ; i <= longueur + 2 ; i++){  //cas ou l'effort normal n'existe pas
 
         x[i] = (double)i;
         y[i] = (double)0;
@@ -136,6 +136,9 @@ void EffortNormal(torseur *t, int longueur, int nb_point){
   }
 
   gnuplot_plot_xy(h, x, y, longueur, "Effort normal (N)");
+  sleep(0);
+
+  gnuplot_plot_slope(h, 0.0, 0.0, "y = 0");
   sleep(2);
 
   return;
@@ -152,7 +155,7 @@ void EffortTranchant(torseur *t, int longueur, int nb_point){
 
   if (nb_point == 2 && t[1].c[0] == (double)longueur){ //si 2 torseurs qui parcourent toute la poutre
     if (t[0].f[1] != 0 && t[1].f[1] != 0){  //cas ou l'effort tranchant existe
-      for (i = 0 ; i < longueur ; i++){   //une seule zone a etudier
+      for (i = 0 ; i <= longueur ; i++){   //une seule zone a etudier
 
         x[i] = (double)i;
         y[i] = -t[0].f[1];
@@ -200,7 +203,7 @@ void EffortTranchant(torseur *t, int longueur, int nb_point){
   if (nb_point == 3 && t[2].c[0] == (double)longueur){ //si 3 torseurs qui parcourent toute la poutre -> 2 zones a etudier
     if (t[0].f[1] != 0 && t[1].f[1] != 0 && t[2].f[1] != 0){  //cas ou l'effort tranchant existe
 
-      for (i = 0 ; i < t[1].c[0]+1 ; i++){ //1ere zone a etudier entre 1er et 2eme torseur
+      for (i = 0 ; i <= t[1].c[0]+1 ; i++){ //1ere zone a etudier entre 1er et 2eme torseur
 
         x[i] = (double)i;
         y[i] = -t[0].f[1];
@@ -258,9 +261,9 @@ void EffortTranchant(torseur *t, int longueur, int nb_point){
       }
     }
   }
-  
+
   gnuplot_plot_xy(h, x, y, longueur, "Effort tranchant (N)");
-  sleep(2);
+  sleep(0);
 
   gnuplot_plot_slope(h, 0.0, 0.0, "y = 0");
   sleep(2);
@@ -398,6 +401,9 @@ void MomentdeFlexionZ(torseur *t, int longueur, int nb_point){
   }
 
   gnuplot_plot_xy(h, x, y, longueur, "Moment de flexion (Nm)");
+  sleep(0);
+
+  gnuplot_plot_slope(h, 0.0, 0.0, "y = 0");
   sleep(2);
 
 }
