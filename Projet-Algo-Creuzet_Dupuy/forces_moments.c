@@ -69,13 +69,13 @@ void AfficherMoments(torseur* t, int i){
     printf("\n\n---- Calcul des Moments en 0 ----\n\n");
     printf("NOM : %s\n",t[i].nom);
     printf("MOMENTS : ");
-    for (j = 0 ; j < nb_point ; j++){
+    for (j = 0 ; j < 3 ; j++){
         printf("%f ",t[i].m[j]);
     }
     printf("\n");
 }
 
-void babar(torseur *t, int origine, int nb_point){
+void babar(torseur *t, int nb_point){
 
 	int k = 0, i = 0; 	// i=torseur k=x y z
 
@@ -85,6 +85,7 @@ void babar(torseur *t, int origine, int nb_point){
         t[i].m[k] = 0;
     }
   }
+  printf("oui");
 
 	for (i = 0 ; i < 3 ; i++){
     if (t[i].inconnu == 1){

@@ -19,10 +19,10 @@ const int valMax = 4;
 int* ptr_longueur = NULL;
 int nb_point, i, var = -1, a = 0, longueur = -1;
 
-void NombrePoints(int nombre_point){
+int NombrePoints(int nombre_point){
 
     while (nombre_point > 4 || nombre_point <= 0){
-      
+
         while (nombre_point <= 0){
         printf("Vous ne pouvez pas avoir un nombre de point negatif, combien de points avez-vous dans votre exercice ? ");
         scanf("%i",&nombre_point);
@@ -32,42 +32,44 @@ void NombrePoints(int nombre_point){
         scanf("%i",&nombre_point);
         }
     }
+
+    return nombre_point;
 }
 
 void Dimension(int var){
-  
+
   while (var != 2 && var != 3){
-    
+
       printf("Choisissez entre 2 ou 3 ");
       scanf("%i",&var);
-    
+
   }
 }
 
-void Fctlongueur(int longueur,torseur *t){
+int Fctlongueur(int longueur,torseur *t){
 
   while (longueur < 0){
       printf("Une longueur doit être positive ");
       scanf("%i",&longueur);
   }
 
-  ptr_longueur = &longueur;
+  return longueur;
 
 }
 
 void CreationT(int i,int nb_point,torseur *t,int var){
-  
+
   int origine = 1;
-  
+
   for (i = 0 ; i < nb_point ; i++){
       printf("On va remplir les information du torseur %i\n",i+1);
 
       origine = EntrerTorseur(i, t, var,origine);
   }
-  
+
 }
 
-void MenuChoix(int ChoixUtilisateur,torseur *t,int origine){
+void MenuChoix(int ChoixUtilisateur,torseur *t,int origine, int longueur, int nb_point){
 
   do {
       switch(ChoixUtilisateur){
@@ -82,7 +84,7 @@ void MenuChoix(int ChoixUtilisateur,torseur *t,int origine){
 
       case 2 :
           printf("Voici vos moments\n");
-          babar(t, origine, nb_point);
+          babar(t, nb_point);
           break;
 
       case 3 :
@@ -135,13 +137,13 @@ void Initialisation(int i, torseur* t){
 }
 
 int Origine(int origine,int i){
-  
+
   if (origine == 1 ){
     printf("Est-ce le point d'origine ? (0 : oui | 1 : non)\n");
     scanf("%i",&origine);
   }
   return origine;
-  
+
 }
 
 
