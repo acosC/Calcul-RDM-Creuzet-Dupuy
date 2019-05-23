@@ -7,8 +7,10 @@ void Initialisation_cohesion(torseur_cohesion *tc){
       for (i = 0 ; i < 3 ; i++) {
 
         for (j = 0 ; j < 3 ; j++){
+
             tc[i].f[j] = 0;
             tc[i].m[j] = 0;
+
         }
 
       }
@@ -18,7 +20,8 @@ void EffortNormal(torseur *t, int longueur, int nb_point){
 
   int i;
   double x[157], y[157];
-  gnuplot_ctrl *h;      //on touche pas à ça
+  gnuplot_ctrl *h;    //on touche pas à ça
+  printf("%i",longueur);
   h = gnuplot_init();   //pas touche
 
   gnuplot_setstyle(h, "linespoints");   //pas touche deco
@@ -255,8 +258,11 @@ void EffortTranchant(torseur *t, int longueur, int nb_point){
       }
     }
   }
-
+  
   gnuplot_plot_xy(h, x, y, longueur, "Effort tranchant (N)");
+  sleep(2);
+
+  gnuplot_plot_slope(h, 0.0, 0.0, "y = 0");
   sleep(2);
 
   return;
