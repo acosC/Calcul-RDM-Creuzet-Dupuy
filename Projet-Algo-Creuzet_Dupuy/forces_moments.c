@@ -12,8 +12,9 @@ void AfficherForces(torseur* t, int i){
     printf("\n\n---- Calcul des forces ----\n\n");
     printf("NOM : %s\n",t[i].nom);
     printf("FORCES : ");
-    for (j = 0 ; j < 3 ; j++){
+    for (j = 0 ; j < 3; j++){
         printf("%f ",t[i].f[j]);
+    if ()
     }
     printf("\n");
 }
