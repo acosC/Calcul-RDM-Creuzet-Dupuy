@@ -13,6 +13,7 @@ void AfficherForces(torseur* t, int i){
     printf("NOM : %s\n",t[i].nom);
     printf("FORCES : ");
     for (j = 0 ; j < 3; j++){
+
         printf("%f \n ",t[i].f[j]);
 
     }
@@ -67,7 +68,7 @@ void ResolForce3Torseurs(torseur *t){ //Cas " tors 1 inc
 
 void AfficherMoments(torseur* t, int i){
     int j;
-    printf("\n\n---- Calcul des Moments en 0 ----\n\n");
+    printf("\n\n---- Calcul des Moments ----\n\n");
     printf("NOM : %s\n",t[i].nom);
     printf("MOMENTS : ");
     for (j = 0 ; j < 3 ; j++){
