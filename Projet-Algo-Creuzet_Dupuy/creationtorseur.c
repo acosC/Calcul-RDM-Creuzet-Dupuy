@@ -19,7 +19,7 @@ const int valMax = 4;
 int* ptr_longueur = NULL;
 int nb_point, i, var = -1, a = 0, longueur = -1;
 
-int NombrePoints(int nombre_point){
+void NombrePoints(int nombre_point){
 
     while (nombre_point > 4 || nombre_point <= 0){
 
@@ -32,8 +32,6 @@ int NombrePoints(int nombre_point){
         scanf("%i",&nombre_point);
         }
     }
-
-    return nombre_point;
 }
 
 void Dimension(int var){
@@ -46,14 +44,14 @@ void Dimension(int var){
   }
 }
 
-int Fctlongueur(int longueur,torseur *t){
+void Fctlongueur(int longueur,torseur *t){
 
   while (longueur < 0){
       printf("Une longueur doit être positive ");
       scanf("%i",&longueur);
   }
 
-  return longueur;
+  ptr_longueur = &longueur;
 
 }
 
@@ -69,7 +67,7 @@ void CreationT(int i,int nb_point,torseur *t,int var){
 
 }
 
-void MenuChoix(int ChoixUtilisateur,torseur *t,int origine, int longueur, int nb_point){
+void MenuChoix(int ChoixUtilisateur,torseur *t,int origine){
 
   do {
       switch(ChoixUtilisateur){
@@ -84,7 +82,7 @@ void MenuChoix(int ChoixUtilisateur,torseur *t,int origine, int longueur, int nb
 
       case 2 :
           printf("Voici vos moments\n");
-          babar(t, nb_point);
+          babar(t, origine, nb_point);
           break;
 
       case 3 :
@@ -96,17 +94,13 @@ void MenuChoix(int ChoixUtilisateur,torseur *t,int origine, int longueur, int nb
           break;
 
       case 4 :
-          printf("Voici vos torseurs de cohesion\n");
-          break;
-
-      case 5 :
           printf("Voici vos diagrammes\n");
           EffortNormal(t,longueur,nb_point);
           EffortTranchant(t,longueur,nb_point);
           MomentdeFlexionZ(t,longueur,nb_point);
           break;
 
-      case 6 :
+      case 5 :
           assert (a == 0);
       default :
           printf("Vous n'avez pas fais de choix\n");
@@ -116,9 +110,8 @@ void MenuChoix(int ChoixUtilisateur,torseur *t,int origine, int longueur, int nb
       printf("1 - Donnez les Resultantes\n");
       printf("2 - Donnez les Moments\n");
       printf("3 - Donnez les Torseurs\n");
-      printf("4 - Donnez les Torseurs Cohesion\n");
-      printf("5 - Donnez les Diagrammes\n");
-      printf("6 - Quitter le programme\n");
+      printf("4 - Donnez les Diagrammes\n");
+      printf("5 - Quitter le programme\n");
       printf("\nVeuillez entrer votre choix !\n");
       scanf("%i",&ChoixUtilisateur);
 

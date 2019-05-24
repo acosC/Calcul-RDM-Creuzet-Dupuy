@@ -86,7 +86,6 @@ void babar(torseur *t, int nb_point){
         t[i].m[k] = 0;
     }
   }
-  printf("oui");
 
 	for (i = 0 ; i < 3 ; i++){
     if (t[i].inconnu == 1){
