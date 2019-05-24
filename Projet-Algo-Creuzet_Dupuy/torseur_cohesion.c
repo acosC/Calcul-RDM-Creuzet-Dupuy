@@ -293,7 +293,7 @@ void MomentdeFlexionZ(torseur *t, int longueur, int nb_point){
 
     }
 
-    else {   //cas où le moment de flexion n'estiste pas
+    else {   //cas où le moment de flexion n'existe pas
       for (i = 0 ; i <= longueur ; i++){
 
         x[i] = (double)i;
