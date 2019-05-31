@@ -61,7 +61,7 @@ void ResolForce3Torseurs(torseur* t);
 void AfficherForces(torseur* t, int i);
 
 //Moments
-void babar(torseur *t, int nb_point);
+void babar(torseur *t,int origine, int nb_point);
 void AfficherMoments(torseur* t, int i);
 
 //torseurs

@@ -77,7 +77,7 @@ void AfficherMoments(torseur* t, int i){
     printf("\n");
 }
 
-void babar(torseur *t, int nb_point){
+void babar(torseur *t,int origine, int nb_point){
 
 	int k = 0, i = 0; 	// i=torseur k=x y z
 
