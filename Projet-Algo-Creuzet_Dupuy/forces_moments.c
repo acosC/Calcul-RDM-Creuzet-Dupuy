@@ -13,7 +13,9 @@ void AfficherForces(torseur* t, int i){
     printf("NOM : %s\n",t[i].nom);
     printf("FORCES : ");
     for (j = 0 ; j < 3; j++){
-        printf("%f ",t[i].f[j]);
+
+        printf("%f \n ",t[i].f[j]);
+
     }
     printf("\n");
 }
@@ -70,7 +72,7 @@ void AfficherMoments(torseur* t, int i){
     printf("NOM : %s\n",t[i].nom);
     printf("MOMENTS : ");
     for (j = 0 ; j < 3 ; j++){
-        printf("%f ",t[i].m[j]);
+        printf("%f\n ",t[i].m[j]);
     }
     printf("\n");
 }
@@ -85,7 +87,6 @@ void babar(torseur *t, int nb_point){
         t[i].m[k] = 0;
     }
   }
-  printf("oui");
 
 	for (i = 0 ; i < 3 ; i++){
     if (t[i].inconnu == 1){
