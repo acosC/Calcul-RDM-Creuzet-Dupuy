@@ -19,7 +19,6 @@ int main()
 
   int nb_point, i, var = -1, a = 0, origine = -1, longueur = -1;
   int ChoixUtilisateur = 0;
-  torseur_cohesion toco[3];
 
 
   printf("\n=============================Calcul-Rdm-Dupuy-Creuzet===========================\n\n");
@@ -32,8 +31,6 @@ int main()
 
   nb_point = NombrePoints(nb_point);
   torseur t[nb_point];
-
-  Initialisation_cohesion(toco);
 
   printf("Est-t-on sur un probleme a 2 dimensions ou a 3 dimensions ? ");
   printf("\nEntrez 2 ou 3\n");
@@ -50,10 +47,9 @@ int main()
 
   printf("1 - Donnez les Resultantes\n");
   printf("2 - Donnez les Moments\n");
-  printf("3 - Donnez les Moments en 0\n");
-  printf("4 - Donnez les Torseurs\n");
-  printf("5 - Donnez les Diagrammes\n");
-  printf("6 - Quitter le programme\n");
+  printf("3 - Donnez les Torseurs\n");
+  printf("4 - Donnez les Diagrammes\n");
+  printf("5 - Quitter le programme\n");
   printf("\nVeuillez entrer votre choix !\n");
   scanf("%i",&ChoixUtilisateur);
 
