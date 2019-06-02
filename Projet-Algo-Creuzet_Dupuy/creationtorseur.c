@@ -96,17 +96,13 @@ void MenuChoix(int ChoixUtilisateur,torseur *t,int origine, int longueur, int nb
           break;
 
       case 4 :
-          printf("Voici vos torseurs de cohesion\n");
-          break;
-
-      case 5 :
           printf("Voici vos diagrammes\n");
           EffortNormal(t,longueur,nb_point);
           EffortTranchant(t,longueur,nb_point);
           MomentdeFlexionZ(t,longueur,nb_point);
           break;
 
-      case 6 :
+      case 5 :
           assert (a == 0);
       default :
           printf("Vous n'avez pas fais de choix\n");

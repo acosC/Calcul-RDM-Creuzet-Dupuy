@@ -68,7 +68,6 @@ void AfficherMoments(torseur* t, int i);
 void AfficherlesTorseurs(torseur *t, int i);
 
 //Graphique
-void Initialisation_cohesion(torseur_cohesion *tc);
 void EffortNormal(torseur *t, int longueur, int nb_point);
 void EffortTranchant(torseur *t, int longueur, int nb_point);
 void MomentdeFlexionZ(torseur *t, int longueur, int nb_point);
