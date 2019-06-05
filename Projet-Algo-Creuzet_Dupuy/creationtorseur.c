@@ -111,7 +111,7 @@ void MenuChoix(int ChoixUtilisateur,torseur *t,int origine, int longueur, int nb
           break;
 
       case 5 :
-          assert ();
+          assert (a == 0);
       default :
           printf("Vous n'avez pas fais de choix\n");
           break;
@@ -126,7 +126,7 @@ void MenuChoix(int ChoixUtilisateur,torseur *t,int origine, int longueur, int nb
       scanf("%i",&ChoixUtilisateur);
       scanf("%c",&v);
 
-  } while (ChoixUtilisateur != 6);
+  } while (ChoixUtilisateur != 5);
 }
 
 void Initialisation(int i, torseur* t){
