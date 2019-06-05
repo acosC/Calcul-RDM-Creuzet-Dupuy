@@ -19,39 +19,49 @@ const int valMax = 4;
 int* ptr_longueur = NULL;
 int nb_point, i, var = -1, a = 0, longueur = -1;
 
-void NombrePoints(int nombre_point){
+int NombrePoints(int nombre_point){
+    char v;
+    printf("Combien de points dans votre probleme ? ");
+    scanf("%i",&nb_point);
+    scanf("%c",&v);
 
     while (nombre_point > 4 || nombre_point <= 0){
 
         while (nombre_point <= 0){
         printf("Vous ne pouvez pas avoir un nombre de point negatif, combien de points avez-vous dans votre exercice ? ");
         scanf("%i",&nombre_point);
+        scanf("%c",&v);
         }
         while (nombre_point > 3){
         printf("Vous ne pouvez pas nous donner trop de points, combien de poins avez-vous dans ton exercice ? ");
         scanf("%i",&nombre_point);
+        scanf("%c",&v);
         }
     }
+    return nombre_point;
 }
 
 void Dimension(int var){
+  char v;
 
   while (var != 2 && var != 3){
 
       printf("Choisissez entre 2 ou 3 ");
       scanf("%i",&var);
+      scanf("%c",&v);
 
   }
 }
 
-void Fctlongueur(int longueur,torseur *t){
-
+int Fctlongueur(int longueur,torseur *t){
+  char v;
   while (longueur < 0){
       printf("Une longueur doit être positive ");
       scanf("%i",&longueur);
+      scanf("%c",&v);
   }
 
-  ptr_longueur = &longueur;
+  return longueur;
 
 }
 
@@ -67,8 +77,8 @@ void CreationT(int i,int nb_point,torseur *t,int var){
 
 }
 
-void MenuChoix(int ChoixUtilisateur,torseur *t,int origine){
-
+void MenuChoix(int ChoixUtilisateur,torseur *t,int origine, int longueur, int nb_point){
+  char v;
   do {
       switch(ChoixUtilisateur){
 
@@ -82,7 +92,7 @@ void MenuChoix(int ChoixUtilisateur,torseur *t,int origine){
 
       case 2 :
           printf("Voici vos moments\n");
-          babar(t, origine, nb_point);
+          babar(t, nb_point);
           break;
 
       case 3 :
@@ -114,6 +124,7 @@ void MenuChoix(int ChoixUtilisateur,torseur *t,int origine){
       printf("5 - Quitter le programme\n");
       printf("\nVeuillez entrer votre choix !\n");
       scanf("%i",&ChoixUtilisateur);
+      scanf("%c",&v);
 
   } while (ChoixUtilisateur != 6);
 }
@@ -126,22 +137,28 @@ void Initialisation(int i, torseur* t){
     for (j = 0 ; j < 3 ; j++){
         t[i].f[j] = 1;
         t[i].m[j] = 1;
+        t[i].c[j] = -1;
     }
 }
 
 int Origine(int origine,int i){
+  char v;
 
-  if (origine == 1 ){
-    printf("Est-ce le point d'origine ? (0 : oui | 1 : non)\n");
-    scanf("%i",&origine);
-  }
+    if (origine == 1 ){
+
+      origine = -1;
+      while (origine < 0){
+      printf("Est-ce le point d'origine ? (0 : oui | 1 : non)\n");
+      scanf("%i",&origine);
+      scanf("%c",&v);}
+    }
   return origine;
 
 }
 
 
 int Localisation(int var, torseur* t, int i, int origine){
-
+    char v;
     origine = Origine(origine,i);
 
     if (var == 2){
@@ -153,11 +170,17 @@ int Localisation(int var, torseur* t, int i, int origine){
           t[i].c[1] = 0;
         }
         else {
-          printf("Ou est-il localise ?\n");
-          printf("en x : ");
-          scanf("%lf",&t[i].c[0]);
-          printf("en y : ");
-          scanf("%lf",&t[i].c[1]);
+          while (t[i].c[0] < 0) {
+            printf("Ou est-il localise ?\n");
+            printf("en x : ");
+            scanf("%lf",&t[i].c[0]);
+            scanf("%c",&v);
+          }
+          while (t[i].c[1] < 0) {
+            printf("en y : ");
+            scanf("%lf",&t[i].c[1]);
+            scanf("%c",&v);
+          }
           }
     }
     if (var == 3){
@@ -170,13 +193,22 @@ int Localisation(int var, torseur* t, int i, int origine){
         }
         else
         {
-          printf("Ou est-il localise ?\n");
-           printf("en x : ");
-           scanf("%lf",&t[i].c[0]);
-           printf("en y : ");
-           scanf("%lf",&t[i].c[1]);
-           printf("en z : ");
-           scanf("%lf",&t[i].c[2]);
+          while (t[i].c[0] < 0) {
+            printf("Ou est-il localise ?\n");
+            printf("en x : ");
+            scanf("%lf",&t[i].c[0]);
+            scanf("%c",&v);
+          }
+          while (t[i].c[1] < 0) {
+            printf("en y : ");
+            scanf("%lf",&t[i].c[1]);
+            scanf("%c",&v);
+          }
+          while (t[i].c[2]) {
+            printf("en z : ");
+            scanf("%lf",&t[i].c[2]);
+            scanf("%c",&v);
+          }
         }
     }
     return origine;
@@ -258,7 +290,7 @@ void Liaison(int liaison, torseur* t, int i, int var){
 }
 
 void Forces(int var, torseur* t, int i, int forces){
-
+    char v;
     int j = 0;
 
     switch(forces){
@@ -273,6 +305,7 @@ void Forces(int var, torseur* t, int i, int forces){
                 if (j == 2)
                     printf("Force en Z : ");
                 scanf("%lf", &t[i].f[j]);
+                scanf("%c",&v);
             }
             j++;
         }
@@ -286,6 +319,7 @@ void Forces(int var, torseur* t, int i, int forces){
                 if (j == 2)
                     printf("Moment en Z : ");
                 scanf("%lf", &t[i].m[j]);
+                scanf("%c",&v);
             }
             j++;
         }
@@ -310,26 +344,29 @@ si il est à l'origine ou non. (éviter répétition de la qst)
 
 int EntrerTorseur(int i, torseur t[valMax], int var, int origine){
     int  liaison = -1, forces = -1;
-
+    char v;
     Initialisation(i, t);
 
     printf("Comment s'appelle votre point ? ");
     scanf("%s",t[i].nom);
+    scanf("%c",&v);
 
-    origine=Localisation(var, t, i, origine);
+    origine = Localisation(var, t, i, origine);
 
-    printf("test origine 3 %i\n",origine);
+    while (liaison < 0){
+      printf("Quelle est la liaison de votre point ?\n");
+      printf("0 - Encastrement\n");
+      printf("1 - Glissiere\n");
+      printf("2 - Pivot\n");
+      printf("3 - Pivot Glissant\n");
+      printf("4 - Rotule\n");
+      printf("5 - Lineaire rectitiligne\n");
+      printf("6 - Lineaire annulaire\n");
+      printf("7 - Ponctuelle\n");
+      scanf("%i", &liaison);
+      scanf("%c",&v);
+    }
 
-    printf("Quelle est la liaison de votre point ?\n");
-    printf("0 - Encastrement\n");
-    printf("1 - Glissiere\n");
-    printf("2 - Pivot\n");
-    printf("3 - Pivot Glissant\n");
-    printf("4 - Rotule\n");
-    printf("5 - Lineaire rectitiligne\n");
-    printf("6 - Lineaire annulaire\n");
-    printf("7 - Ponctuelle\n");
-    scanf("%i", &liaison);
     t[i].l = liaison;              //choix type de liaison
 
     Liaison(liaison, t,i, var);
