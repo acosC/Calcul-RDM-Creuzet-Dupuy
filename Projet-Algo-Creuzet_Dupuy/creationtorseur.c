@@ -111,7 +111,7 @@ void MenuChoix(int ChoixUtilisateur,torseur *t,int origine, int longueur, int nb
           break;
 
       case 5 :
-          assert (a == 0);
+          assert ();
       default :
           printf("Vous n'avez pas fais de choix\n");
           break;
