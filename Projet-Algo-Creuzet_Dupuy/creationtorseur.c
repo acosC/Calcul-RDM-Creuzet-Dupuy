@@ -15,6 +15,7 @@ Détail de la collecte des données :
 
 //===================================
 
+
 const int valMax = 4;
 int* ptr_longueur = NULL;
 int nb_point, i, var = -1, a = 0, longueur = -1;
