@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include<math.h>
 
+
 /*
 Création des structures du programme :
 

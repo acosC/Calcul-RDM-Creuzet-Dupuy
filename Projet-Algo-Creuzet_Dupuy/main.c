@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include "rdm.h"
+//#include <ctype.h>
 
 /*
 Interface utilisateur-->Questions à choix multiple
@@ -22,12 +23,14 @@ int main()
   torseur_cohesion toco[3];
 
 
+
   printf("\n=============================Calcul-Rdm-Dupuy-Creuzet===========================\n\n");
   printf("Bonjour, nous allons vous aider dans la resolution de votre probleme de RDM.\n");
   printf("Quelques questions pour comprendre l'exercice : \n");
   printf("\nAvant toute chose :\n");
   printf("Veillez à entrer vos torseurs dans l'ordre suivant :\n-->origine puis suivant les x croissant\n\n");
-  printf("Combien de points dans votre probleme ? ");
+  printf("Combien de points dans votre probleme ? \n");
+
   scanf("%i",&nb_point);
 
   nb_point = NombrePoints(nb_point);
@@ -38,6 +41,7 @@ int main()
   printf("Est-t-on sur un probleme a 2 dimensions ou a 3 dimensions ? ");
   printf("\nEntrez 2 ou 3\n");
   scanf("%i", &var);
+
 
   Dimension(var);
 
